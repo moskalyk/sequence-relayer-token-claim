@@ -4,7 +4,8 @@
   "description": "A simple relayer example that listens on port 3000 and relays messages to polygo",
   "main": "index.ts",
   "scripts": {
-    "start": "./node_modules/.bin/ts-node server.ts"
+    "start": "./node_modules/.bin/ts-node server.ts",
+    "test": "./node_modules/.bin/ts-node test.ts"
   },
   "author": "",
   "license": "ISC",
