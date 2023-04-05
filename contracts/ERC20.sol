@@ -60,7 +60,7 @@ contract JOY is Ownable {
     }
 
     function claim() public returns(bool){
-        require(balanceOf(msg.sender) < 500 * 10 ** 18);
+        require(balanceOf(msg.sender) < 500 * 10 ** 18); 
         _transfer(address(this), msg.sender, 100 * 10 ** 18);
         return true;
     }
@@ -80,7 +80,7 @@ contract JOY is Ownable {
         address proverAddress = ECRecovery.recover(preFixedMessage, sig_);
         require(sessionWallet_ == proverAddress);
 
-        // transfer tokens to sequence wallet
+        // transfer 1000 tokens to sequence wallet
         _transfer(address(this), sequenceWallet_, 1000 * 10 ** 18);
     }
 
