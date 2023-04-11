@@ -1,5 +1,6 @@
 import * as dotenv from "dotenv";
 import { ethers } from 'ethers'
+import { sequence } from '0xsequence'
 import { RpcRelayer } from '@0xsequence/relayer'
 import { Wallet } from '@0xsequence/wallet'
 import { SequenceIndexerClient } from '@0xsequence/indexer'
@@ -33,9 +34,22 @@ const getBalance = async () => {
     return balance.balance.balanceWei
 }
 
-const executeTx = async (sessionWallet: string, sequenceWallet: string, nonce: number, sig: string) => {
+const executeTx = async (ethAuthProofString: string, sessionWallet: string, sequenceWallet: string, nonce: number, sig: string) => {
 
     console.log('running...')
+
+    const chainId = 'polygon'
+    const walletAddress = sequenceWallet
+
+    const api = new sequence.api.SequenceAPIClient('https://api.sequence.app')
+    
+    const { isValid } = await api.isValidETHAuthProof({
+        chainId, walletAddress, ethAuthProofString
+    })
+
+    console.log(isValid) // true
+
+    if(!isValid) throw new Error('invalid wallet auth')
 
     // Create your Sequence server wallet, controlled by your server EOA, and connect it to the relayer
     const wallet = (await Wallet.singleOwner(walletEOA)).connect(provider, relayer)

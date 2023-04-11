@@ -10,6 +10,7 @@ app.use(bodyParser.json())
 app.post('/transaction', async (req: any, res: any) => {
     try{
         const tx = await executeTx(
+                            req.body.ethAuthProofString,
                             req.body.sessionWallet, 
                             req.body.sequenceWallet, 
                             req.body.nonce, 

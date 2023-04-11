@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "0xsequence": "^0.43.26",
     "@0xsequence/relayer": "^0.43.24",
     "@0xsequence/wallet": "^0.43.24",
     "body-parser": "^1.20.2",
